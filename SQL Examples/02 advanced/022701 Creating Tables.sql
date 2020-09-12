@@ -1,0 +1,7 @@
+USE demo
+
+CREATE TABLE Person(
+PersonID BIGINT NOT NULL,
+FirstName NVARCHAR(50) NULL,
+LastName NVARCHAR(50) NULL,
+)
