@@ -1,13 +1,3 @@
--- =============================================
--- Author: Bob Wakefield
--- Create date: 14Oct17
--- Description: A more complex example of de-duplicating production data.
--- Supporting code in reply to the original post Common SQL Problems: De-duplicating Data
--- by Aram Koukia.
--- https://koukia.ca/common-sql-problems-de-duplicating-data-9ca53487ce57
--- This example was developed and tested on SQL Server 2016 Development Edition.
--- =============================================
-
 USE demo
 
 --Create our product table

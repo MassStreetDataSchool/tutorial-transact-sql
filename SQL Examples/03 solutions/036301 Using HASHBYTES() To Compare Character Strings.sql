@@ -1,4 +1,4 @@
-Use AdventureWorks2016
+USE demo
 
 DECLARE @Statement1 NVARCHAR(255)
 DECLARE @Statement2 NVARCHAR(255)

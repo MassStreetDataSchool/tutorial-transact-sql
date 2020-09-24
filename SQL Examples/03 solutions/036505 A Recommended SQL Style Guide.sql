@@ -16,5 +16,7 @@ JOIN [Sales].[SalesOrderDetail] sod
 ON soh.SalesOrderID = sod.SalesOrderID
 WHERE 1 = 1
 
+SET NOCOUNT OFF;
+
 END;
 GO

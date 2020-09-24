@@ -1,4 +1,4 @@
-USE AdventureWorks2016
+USE demo
 
 DECLARE @SampleStageTable AS TABLE(ID INT, VALUE1 NVARCHAR(10), VALUE2 NVARCHAR(10))
 

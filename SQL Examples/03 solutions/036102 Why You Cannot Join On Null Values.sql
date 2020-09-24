@@ -1,4 +1,4 @@
-USE AdventureWorks2016
+USE demo
 
 DECLARE @genders TABLE(gender_id INT, gender VARCHAR(20))
 DECLARE @toys TABLE(toy_id INT, gender_id INT, toy_name VARCHAR(20))

@@ -11,7 +11,7 @@ Directions for use.
 and the schema that it lives in.
 */
 
-USE ODS
+USE demo
 
 GO
 

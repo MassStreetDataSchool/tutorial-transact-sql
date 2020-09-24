@@ -1,3 +1,5 @@
+USE demo
+
 ;with mycte as (
 select * from  @toys WHERE toy_name NOT IN('My Little Pony')) 
 
