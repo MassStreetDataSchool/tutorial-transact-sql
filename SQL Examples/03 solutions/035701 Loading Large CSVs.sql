@@ -8,8 +8,10 @@ GO
 
 CREATE SCHEMA temp
 
+
+
 CREATE TABLE temp.FlightsStaging(
-[ETLKey] [uniqueidentifier] NOT NULL,
+ETLKey uniqueidentifier NOT NULL,
 year NVARCHAR(255) NULL,
 month NVARCHAR(255) NULL,
 day NVARCHAR(255) NULL,
@@ -29,15 +31,15 @@ distance NVARCHAR(255) NULL,
 hour NVARCHAR(255) NULL,
 minute NVARCHAR(255) NULL,
 time_hour NVARCHAR(255) NULL,
-[UniqueDims] [varbinary](35) NULL,
-[UniqueRows] [varbinary](16) NULL,
-[SourceSystem] [nvarchar](255) NULL,
-[Cleansed] [bit] NULL,
-[ErrorRecord] [bit] NULL,
-[ErrorReason] [nvarchar](255) NULL,
-[Processed] [bit] NULL,
-[RunDate] [datetime] NULL,
-CONSTRAINT [PK_FlightsStaging] PRIMARY KEY CLUSTERED 
+UniqueDims varbinary(35) NULL,
+UniqueRows varbinary(16) NULL,
+SourceSystem nvarchar(255) NULL,
+Cleansed bit NULL,
+ErrorRecord bit NULL,
+ErrorReason nvarchar(255) NULL,
+Processed bit NULL,
+RunDate datetime NULL,
+CONSTRAINT PK_FlightsStaging PRIMARY KEY CLUSTERED 
 (
        [ETLKey] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -45,22 +47,22 @@ CONSTRAINT [PK_FlightsStaging] PRIMARY KEY CLUSTERED
 
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_ETLKey]  DEFAULT (newid()) FOR [ETLKey]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_ETLKey  DEFAULT (newid()) FOR ETLKey
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_SourceSystem]  DEFAULT (N'Flights System') FOR [SourceSystem]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_SourceSystem  DEFAULT (N'Flights System') FOR SourceSystem
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_Cleansed]  DEFAULT ((0)) FOR [Cleansed]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_Cleansed  DEFAULT ((0)) FOR Cleansed
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_ErrorRecord]  DEFAULT ((0)) FOR [ErrorRecord]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_ErrorRecord  DEFAULT ((0)) FOR ErrorRecord
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_Processed]  DEFAULT ((0)) FOR [Processed]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_Processed  DEFAULT ((0)) FOR Processed
 GO
 
-ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT [DF_FlightsStaging_RunDate]  DEFAULT (getdate()) FOR [RunDate]
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT DF_FlightsStaging_RunDate  DEFAULT (getdate()) FOR RunDate
 GO
 
 CREATE VIEW FlightsStaging
@@ -88,7 +90,7 @@ time_hour
 FROM temp.FlightsStaging
 GO
 --Begin Load
-ALTER TABLE [temp].[FlightsStaging] DROP CONSTRAINT [PK_FlightsStaging] WITH ( ONLINE = OFF )
+ALTER TABLE temp.FlightsStaging DROP CONSTRAINT PK_FlightsStaging WITH ( ONLINE = OFF )
 GO
 
 --Insert into the view
@@ -100,9 +102,9 @@ ROWTERMINATOR = '0x0a',
 FIRSTROW = 2
 );
 
-ALTER TABLE [temp].[FlightsStaging] ADD  CONSTRAINT [PK_FlightsStaging] PRIMARY KEY CLUSTERED 
+ALTER TABLE temp.FlightsStaging ADD  CONSTRAINT PK_FlightsStaging PRIMARY KEY CLUSTERED 
 (
-   [ETLKey] ASC
+   ETLKey ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 

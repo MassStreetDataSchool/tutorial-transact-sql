@@ -1,5 +1,5 @@
 USE AdventureWorks2016
 
 SELECT *
-FROM [HumanResources].[vEmployee]
+FROM HumanResources.vEmployee
 ORDER BY NEWID()

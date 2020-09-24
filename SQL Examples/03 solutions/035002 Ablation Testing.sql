@@ -5,11 +5,11 @@ CONCAT(p.FirstName, ' ',p.LastName) AS SalesPerson,
 DATEPART(month,soh.OrderDate) AS MonthOfSale,
 SUM(sod.LineTotal) AS TotalSales
 FROM Person.Person p
-JOIN [Sales].[SalesPerson] sp
+JOIN Sales.SalesPerson sp
 ON p.BusinessEntityID = sp.BusinessEntityID
-JOIN [Sales].[SalesOrderHeader] soh
+JOIN Sales.SalesOrderHeader soh
 ON sp.BusinessEntityID = soh.SalesPersonID
-JOIN [Sales].[SalesOrderDetail] sod
+JOIN Sales.SalesOrderDetail sod
 ON soh.SalesOrderID = sod.SalesOrderDetailID
 WHERE 1 = 1
 AND sp.Bonus BETWEEN 3000.00 AND 6000.00

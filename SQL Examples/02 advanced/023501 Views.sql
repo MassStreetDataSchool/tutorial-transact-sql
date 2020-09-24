@@ -13,10 +13,10 @@ DATENAME(MONTH,soh.OrderDate) AS MonthOfSale,
 DATEPART(YEAR,soh.OrderDate) AS YearOfSale,
 SUM(sod.LineTotal) AS TotalSales
 FROM Person.Person p
-JOIN [Sales].[SalesPerson] sp
+JOIN Sales.SalesPerson sp
 ON p.BusinessEntityID = sp.BusinessEntityID
-JOIN [Sales].[SalesOrderHeader] soh
+JOIN Sales.SalesOrderHeader soh
 ON sp.BusinessEntityID = soh.SalesPersonID
-JOIN [Sales].[SalesOrderDetail] sod
+JOIN Sales.SalesOrderDetail sod
 ON soh.SalesOrderID = sod.SalesOrderDetailID
 GROUP BY p.LastName, p.FirstName, DATENAME(month,soh.OrderDate), DATEPART(YEAR,soh.OrderDate)
